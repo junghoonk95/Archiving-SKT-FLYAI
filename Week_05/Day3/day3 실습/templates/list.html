@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">번호</th>
+                <th scope="col">사진</th>
+                <th scope="col">이름</th>
+                <th scope="col">아이디</th>
+                <th scope="col">성별</th>
+                <th scope="col">주소</th>
+                <th scope="col">나이</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in user_list %}
+                <tr>
+                    <th scope="row">{{ user['num'] }}</th>
+                    <td>
+                        {% if user['img'] %}
+                            <img
+                                    src="/img/{{user['img']}}"
+                                    class="rounded-circle"
+                                    style="height: 70px; width: 70px"
+                            />
+                        {% endif %}
+                    </td>
+                    <td>{{ user['name'] }}</td>
+                    <td>{{ user['id'] }}</td>
+                    <td>{{ user['sex'] }}</td>
+                    <td>{{ user['address'] }}</td>
+                    <td>{{ user['age'] }}</td>
+                    <td>
+                        {% if userid == user['userid'] or userid == 'admin' %}
+                        <a href="/edit?num={{user['num']}}" type="button" class="btn btn-primary">수정</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if userid == user['userid'] or userid == 'admin' %}
+                        <a href="/delete?num={{user['num']}}" type="button" class="btn btn-danger">제거</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

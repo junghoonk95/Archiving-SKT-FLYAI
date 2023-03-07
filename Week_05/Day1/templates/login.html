@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <p>로그인</p>
+  <form method="post" action="/login">
+    <div class="input-group mb-4">
+      <span class="input-group-text">아이디</span>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="userid" value="" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <span class="input-group-text">비밀번호</span>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" name="userpw" value="" />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">로그인</button>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <p>&nbsp</p>
+      <a href="/join" type="button" class="btn btn-outline-success">회원가입</a>
+    </div>
+    {% if msg %}
+    <div class="mb-3 row">
+      <div class="col-sm-10">
+        <div class="alert alert-danger" role="alert">{{msg}}</div>
+      </div>
+    </div>
+    {% endif %} {% if join == 'y' %}
+    <div class="mb-3 row">
+      <div class="col-sm-10">
+        <div class="alert alert-success" role="alert">
+          회원가입 완료 되었습니다.
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </form>
+</div>
+{% endblock %}
